@@ -1,6 +1,6 @@
-import ReactDOMServer from "react-dom/server";
+import { renderToString } from "react-dom/server";
 import React from "react";
-import { PageLayout } from "./PageLayout";
+import { StaticRouter } from "react-router";
 import { html } from "vite-plugin-ssr";
 import { PageContext } from "./types";
 import logoUrl from "./logo.svg";
@@ -12,11 +12,11 @@ export { passToClient };
 const passToClient = ["pageProps"];
 
 function render(pageContext: PageContext) {
-  const { Page, pageProps } = pageContext;
-  const pageHtml = ReactDOMServer.renderToString(
-    <PageLayout>
+  const { Page, pageProps, url } = pageContext;
+  const pageHtml = renderToString(
+    <StaticRouter location={url}>
       <Page {...pageProps} />
-    </PageLayout>
+    </StaticRouter>
   );
 
   // See https://vite-plugin-ssr.com/html-head
@@ -34,7 +34,7 @@ function render(pageContext: PageContext) {
         <title>${title}</title>
       </head>
       <body>
-        <div id="page-view">${html.dangerouslySkipEscape(pageHtml)}</div>
+        <div id="react-root">${html.dangerouslySkipEscape(pageHtml)}</div>
       </body>
     </html>`;
 }

@@ -1,17 +1,17 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import { getPage } from "vite-plugin-ssr/client";
-import { PageLayout } from "./PageLayout";
+import { BrowserRouter } from "react-router-dom";
 
 hydrate();
 
 async function hydrate() {
   const pageContext = await getPage();
-  const { Page, pageProps } = pageContext;
+  const { Page } = pageContext;
   ReactDOM.hydrate(
-    <PageLayout>
-      <Page {...pageProps} />
-    </PageLayout>,
-    document.getElementById("page-view")
+    <BrowserRouter>
+      <Page {...pageContext.pageProps} />
+    </BrowserRouter>,
+    document.getElementById("react-root")
   );
 }
