@@ -3,7 +3,7 @@ import { Link, Route } from "react-router-dom";
 
 export { Page };
 
-function Page() {
+function Page(pageProps: any) {
   return (
     <>
       <b>
@@ -17,20 +17,27 @@ function Page() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/about1">About</Link>
+          <Link to="/about">About</Link>
         </li>
       </ul>
       <hr />
-      <Route exact path="/" component={Home} />
-      <Route path="/about1" component={About} />
+      <Route exact path="/" >
+        <Home {...pageProps}/>
+      </Route>
+      <Route path="/about">
+        <About {...pageProps} />
+      </Route>
     </>
   );
 }
 
-function Home() {
+function Home({movie}: any) {
+  React.useEffect(() => {
+    console.log('movie', movie)
+  }, []);
   return (
     <div>
-      <h2>Home</h2>
+      <h2>Home { movie.title }</h2>
       <p>Example of client-side routing with React Router and SSR.</p>
       <p>
         This page is rendered to HTML, see{" "}
@@ -40,10 +47,10 @@ function Home() {
   );
 }
 
-function About() {
+function About({movie}: any) {
   return (
     <>
-      <h2>About</h2>
+      <h2>About { movie.title }</h2>
       <p>
         Note how the elapsed time above didn't reset when you switched to the{" "}
         <Code>/about</Code> page.

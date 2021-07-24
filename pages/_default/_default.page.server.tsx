@@ -3,9 +3,10 @@ import React from "react";
 import { StaticRouter } from "react-router";
 import { html } from "vite-plugin-ssr";
 import { PageContext } from "./types";
+import { getPageData } from "./data";
 import logoUrl from "./logo.svg";
 
-export { render };
+export { render, addPageContext };
 export { passToClient };
 
 // See https://vite-plugin-ssr.com/data-fetching
@@ -37,4 +38,10 @@ function render(pageContext: PageContext) {
         <div id="react-root">${html.dangerouslySkipEscape(pageHtml)}</div>
       </body>
     </html>`;
+}
+
+
+async function addPageContext(pageContext: PageContext) {
+  const pageProps = await getPageData(pageContext.url);
+  return { pageProps };
 }
