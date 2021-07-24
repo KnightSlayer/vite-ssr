@@ -8,8 +8,14 @@ export type TMovie = {
   producer: string;
 }
 
-export const init = ({movies}: {movies?: TMovie[]}) => {
-  // clear previous store?
+export const clearMoviesStore = () => {
+  Object.keys(moviesStore).forEach((key) => {
+    delete moviesStore[key];
+  });
+}
+
+export const initMoviesStore = ({movies}: {movies?: TMovie[]}) => {
+  clearMoviesStore();
   if (!movies) return;
 
   for (const movie of movies) {

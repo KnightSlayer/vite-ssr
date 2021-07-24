@@ -5,6 +5,7 @@ import { html } from "vite-plugin-ssr";
 import { PageContext } from "./types";
 import { getPageData } from "./data";
 import logoUrl from "./logo.svg";
+import initStores from "../_stores/_init";
 
 export { render, addPageContext };
 export { passToClient };
@@ -43,5 +44,6 @@ function render(pageContext: PageContext) {
 
 async function addPageContext(pageContext: PageContext) {
   const pageProps = await getPageData(pageContext.url);
+  initStores(pageProps);
   return { pageProps };
 }

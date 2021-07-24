@@ -9,7 +9,6 @@ hydrate();
 async function hydrate() {
   const pageContext = await getPage();
   initStores(pageContext.pageProps);
-  console.log('pageContext.pageProps', pageContext.pageProps)
 
   const { Page } = pageContext;
   ReactDOM.hydrate(
