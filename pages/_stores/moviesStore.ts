@@ -1,6 +1,6 @@
 import { proxy } from 'valtio'
 
-export const moviesStore: any = proxy({});
+export const moviesStore = proxy<{[movieUrl: string]: TMovie}>({});
 export default moviesStore
 export type TMovie = {
   title: string,
