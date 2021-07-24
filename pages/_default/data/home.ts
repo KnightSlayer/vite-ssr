@@ -11,6 +11,6 @@ export const getData = async (path: string) => {
   const response = await fetch(`https://swapi.dev/api/films/1`);
   const movie: TMovie = await response.json();
 
-  return { movie };
+  return { movies: [movie] };
 }
 

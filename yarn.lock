@@ -1089,6 +1089,11 @@ proxy-addr@~2.0.5:
     forwarded "0.2.0"
     ipaddr.js "1.9.1"
 
+proxy-compare@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/proxy-compare/-/proxy-compare-2.0.1.tgz#3ae19cf47f64e89bd60fe4f57afd124f733ef64f"
+  integrity sha512-uXj3TtWdR1S2SNwJKbgJB+1FJm9HM3sFzlVc8W6PZvU6ogt9mlkb1WwZQpuKFLkDS6LKY4+FBE18K6ZArphnHA==
+
 qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
@@ -1372,6 +1377,13 @@ utils-merge@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+
+valtio@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/valtio/-/valtio-1.0.7.tgz#bbcf1bdf722923d1a3b91452c05936c6ab127b21"
+  integrity sha512-zaaM+QiE6P0pBllFIyDnbjaRILEYsy1YYJf6F1D8dsADKxL2r+Fb3SupM8SHQn2tNx4cbSTu9aarOaoiH+X1dg==
+  dependencies:
+    proxy-compare "2.0.1"
 
 value-equal@^1.0.1:
   version "1.0.1"

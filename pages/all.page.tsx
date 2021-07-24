@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, Route } from "react-router-dom";
+import { useSnapshot } from 'valtio';
+import moviesStore, { loadMovie } from './_stores/moviesStore';
 
 export { Page };
 
-function Page(pageProps: any) {
+function Page() {
   return (
     <>
       <b>
@@ -22,22 +24,27 @@ function Page(pageProps: any) {
       </ul>
       <hr />
       <Route exact path="/" >
-        <Home {...pageProps}/>
+        <Home/>
       </Route>
       <Route path="/about">
-        <About {...pageProps} />
+        <About/>
       </Route>
     </>
   );
 }
 
-function Home({movie}: any) {
+function Home() {
+  const movieUrl = 'https://swapi.dev/api/films/1/';
+  const movie = useSnapshot(moviesStore)[movieUrl];
+
   React.useEffect(() => {
-    console.log('movie', movie)
-  }, []);
+    if (movie) return;
+    loadMovie(movieUrl);
+  }, [movie]);
+
   return (
     <div>
-      <h2>Home { movie.title }</h2>
+      <h2>Home { movie?.title || '<None>' }</h2>
       <p>Example of client-side routing with React Router and SSR.</p>
       <p>
         This page is rendered to HTML, see{" "}
@@ -47,10 +54,18 @@ function Home({movie}: any) {
   );
 }
 
-function About({movie}: any) {
+function About() {
+  const movieUrl = 'https://swapi.dev/api/films/2/';
+  const movie = useSnapshot(moviesStore)[movieUrl];
+
+  React.useEffect(() => {
+    if (movie) return;
+    loadMovie(movieUrl);
+  }, [movie]);
+
   return (
     <>
-      <h2>About { movie.title }</h2>
+      <h2>About { movie?.title || '<None>' }</h2>
       <p>
         Note how the elapsed time above didn't reset when you switched to the{" "}
         <Code>/about</Code> page.
