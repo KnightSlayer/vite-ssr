@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "paths": {
+      "~/*": ["./pages/*"]
+    },
     "strict": true,
     "module": "ES2020",
     "moduleResolution": "Node",

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSnapshot } from "valtio";
-import moviesStore, { loadMovie } from "../../../_stores/moviesStore";
-import { Code } from "../../common/Code";
+import moviesStore, { loadMovie } from "~/_stores/moviesStore";
+import { Code } from "~/_components/common/Code";
 
 function Home() {
   const movieUrl = 'https://swapi.dev/api/films/1/';

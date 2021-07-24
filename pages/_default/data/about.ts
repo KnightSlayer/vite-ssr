@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-export { checkAboutPath as checkPath } from "../../_components/routes/About/path";
+export { checkAboutPath as checkPath } from "~/_components/routes/About/path";
 
 type TMovie = {
   title: string;

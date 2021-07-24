@@ -2,10 +2,10 @@ import { renderToString } from "react-dom/server";
 import React from "react";
 import { StaticRouter } from "react-router";
 import { html } from "vite-plugin-ssr";
+import initStores from "~/_stores/_init";
 import { PageContext } from "./types";
 import { getPageData } from "./data";
 import logoUrl from "./logo.svg";
-import initStores from "../_stores/_init";
 
 export { render, addPageContext };
 export { passToClient };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Counter } from "../common/Counter";
-import { TimeElapsed } from "../common/TimeElapsed";
+import { Counter } from "~/_components/common/Counter";
+import { TimeElapsed } from "~/_components/common/TimeElapsed";
 
 type TProps = {
   children: JSX.Element | JSX.Element[];
