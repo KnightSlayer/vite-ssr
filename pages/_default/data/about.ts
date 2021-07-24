@@ -1,11 +1,10 @@
 import fetch from "node-fetch";
+export { checkAboutPath as checkPath } from "../../_components/routes/About/path";
 
 type TMovie = {
   title: string;
   producer: string;
 }
-
-export const checkPath = (path: string) => path === '/about';
 
 export const getData = async (path: string) => {
   const response = await fetch(`https://swapi.dev/api/films/2`);
