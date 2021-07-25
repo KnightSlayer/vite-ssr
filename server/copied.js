@@ -1,7 +1,6 @@
-import express from "express";
-import { createPageRender } from "vite-plugin-ssr";
-// const express = require("express");
-// const { createPageRender } = require("vite-plugin-ssr");
+const express = require("express");
+const { createPageRender } = require("vite-plugin-ssr");
+const vite = require("vite");
 
 const isProduction = process.env.NODE_ENV === "production";
 const root = `${__dirname}/..`;
@@ -15,7 +14,6 @@ async function startServer() {
   if (isProduction) {
     app.use(express.static(`${root}/dist/client`, { index: false }));
   } else {
-    const vite = require("vite");
     viteDevServer = await vite.createServer({
       root,
       server: { middlewareMode: true },
@@ -26,15 +24,13 @@ async function startServer() {
   const renderPage = createPageRender({ viteDevServer, isProduction, root });
   app.get("*", async (req, res, next) => {
     const url = req.originalUrl;
-    const pageContext = {
-      url,
-    };
+    const pageContext = { url };
     const result = await renderPage(pageContext);
     if (result.nothingRendered) return next();
     res.status(result.statusCode).send(result.renderResult);
   });
 
-  const port = process.env.PORT || 3000;
+  const port = 3000;
   app.listen(port);
   console.log(`Server running at http://localhost:${port}`);
 }
